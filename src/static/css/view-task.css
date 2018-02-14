@@ -1,0 +1,35 @@
+#view-task .task-container {
+  display: block;
+  margin: 12px;
+  padding: 12px;
+  background-color: #ccc;
+  border: 1px solid #999;
+  border-radius: 4px;
+  box-shadow: 5px 5px 4px #aaa;
+}
+
+#view-task .task-priority,
+#view-task .task-status {
+  float: right;
+  margin: 7px 16px 0 16px;
+  padding: 0;
+}
+
+#view-task .task-desc {
+  margin: 0;
+  padding: 12px;
+  text-align: justify;
+}
+
+#view-task .task-info > button {
+  width: 32px;
+  height: 32px;
+  margin-right: 16px;
+  background-color: #aaa;
+  border: none;
+  border-radius: 50%;
+}
+
+#view-task .task-info > button:focus {
+  outline: none;
+}

@@ -1,0 +1,53 @@
+#header {
+  height: 64px;
+  background-color: #1565c0;
+  color: #ffffff;
+  box-shadow: 0px 4px 4px #a0a0a0;
+}
+
+#header > div {
+  display: inline-block;
+}
+
+#menu-btn, #setting-btn {
+  width: 48px;
+  height: 48px;
+  margin: 7px;
+  background-color: #1565c0;
+  color: #ffffff;
+  border: none;
+}
+
+#menu-btn:focus, #setting-btn:focus {
+  outline: none;
+}
+
+#menu-list {
+  list-style-type: none;
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  top: 64px;
+  margin: 0;
+  padding: 0;
+  background-color: #1565c0;
+}
+
+#menu-list li {
+  display: block;
+  margin: 0;
+  padding: 16px 8px;
+  height: 22px;
+  text-align: center;
+  font-size: 1.1em;
+}
+
+#menu-list li:hover {
+  background-color: #003c8f;
+  color: white;
+}
+
+#menu-list li.active {
+  background-color: #5e92f3;
+  color: black;
+}

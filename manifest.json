@@ -1,0 +1,16 @@
+{
+  "name": "JarialTekin App",
+  "short_name": "JarialTekin App",
+  "version": "0.1.0",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "theme_color": "#1565c0",
+  "background_color": "#fff",
+  "icons": [
+    {
+      "src": "favicon.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    }
+  ]
+}
