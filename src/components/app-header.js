@@ -26,6 +26,7 @@ export default {
     }
   },
   computed: {
+    currentView () { return this.$store.state.currentView; },
     views () { return this.$store.state.views; }
   },
   methods: {

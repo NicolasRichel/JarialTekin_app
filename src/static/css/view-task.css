@@ -8,20 +8,16 @@
   box-shadow: 5px 5px 4px #aaa;
 }
 
-#view-task .task-priority,
-#view-task .task-status {
-  float: right;
-  margin: 7px 16px 0 16px;
-  padding: 0;
+#view-task .task-info {
+  overflow: auto;
 }
 
-#view-task .task-desc {
-  margin: 0;
-  padding: 12px;
-  text-align: justify;
+#view-task .task-info > div {
+  display: inline-block;
 }
 
 #view-task .task-info > button {
+  float: left;
   width: 32px;
   height: 32px;
   margin-right: 16px;
@@ -32,4 +28,38 @@
 
 #view-task .task-info > button:focus {
   outline: none;
+}
+
+#view-task .task-name {
+  width: 65%;
+}
+
+#view-task .task-priority,
+#view-task .task-status {
+  clear: right;
+  float: right;
+  margin: 0 2px 0 0;
+  padding: 0;
+}
+
+#view-task .task-desc {
+  margin: 0;
+  padding: 12px;
+  text-align: justify;
+}
+
+#view-task #panel {
+  position: absolute;
+  top: 64px;
+  left: 0;
+  width: 25%;
+  height: 100%;
+  background-color: #64b5f6;
+}
+
+#view-task #task-list.panelOpen {
+  position: absolute;
+  top: 64px;
+  right: 0;
+  width: 75%;
 }

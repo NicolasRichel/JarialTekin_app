@@ -5,7 +5,7 @@ import ViewCalendar from './views/view-calendar.js';
 export default {
   template: `
     <div id="body">
-      <component :is="currentView"></component>
+      <component :is="currentView.name"></component>
     </div>
   `,
   computed: {
