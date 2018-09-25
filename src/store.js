@@ -18,9 +18,8 @@ export default function () {
       }
     },
     actions: {
-      getTaskList ({ commit, state }) {
-
-      }
+      getTaskList ({ commit, state }) {},
+      getProjectList ({ commit, state }) {}
     }
   });
 };

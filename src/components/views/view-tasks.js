@@ -2,7 +2,7 @@ import TaskForm from '../task-form.js';
 
 export default {
   template: `
-  <div class="view-container" id="view-task">
+  <div id="view-task" class="view-container">
     <div id="panel" :hidden="hidePanel">
       <component :is="panelContent"></component>
     </div>
@@ -29,12 +29,10 @@ export default {
   created () {
     this.hideDesc = this.tasks.map(t => true);
   },
-  data () {
-    return {
-      hideDesc: [],
-      hidePanel: true,
-      panelContent: ''
-    };
+  data: {
+    hideDesc: [],
+    hidePanel: true,
+    panelContent: ''
   },
   computed: {
     tasks () { return this.$store.state.tasks }

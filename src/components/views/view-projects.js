@@ -1,3 +1,6 @@
 export default {
-  template: `<h1>Projects View</h1>`
+  template: `
+  <div id="view-project" class="view-container">
+    <h1>Projects View</h1>
+  </div>`
 };

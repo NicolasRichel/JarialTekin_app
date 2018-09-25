@@ -1,3 +1,6 @@
 export default {
-  template: `<h1>Calendar View</h1>`
+  template: `
+  <div id="view-calendar" class="view-container">
+    <h1>Calendar View</h1>
+  </div>`
 };

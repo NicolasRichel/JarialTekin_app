@@ -13,8 +13,8 @@ export default {
         </ul>
       </div>
       <div id="actions">view actions goes here ...</div>
-      <div id="setting">
-        <button id="setting-btn">
+      <div id="settings">
+        <button id="settings-btn">
           <i class="fa fa-cog"></i>
         </button>
       </div>

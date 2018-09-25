@@ -9,7 +9,8 @@
   display: inline-block;
 }
 
-#menu-btn, #setting-btn {
+#header #menu-btn,
+#header #settings-btn {
   width: 48px;
   height: 48px;
   margin: 7px;
@@ -18,11 +19,12 @@
   border: none;
 }
 
-#menu-btn:focus, #setting-btn:focus {
+#header #menu-btn:focus,
+#header #settings-btn:focus {
   outline: none;
 }
 
-#menu-list {
+#header #menu-list {
   list-style-type: none;
   position: absolute;
   z-index: 1;
@@ -33,7 +35,7 @@
   background-color: #1565c0;
 }
 
-#menu-list li {
+#header #menu-list li {
   display: block;
   margin: 0;
   padding: 16px 8px;
@@ -42,16 +44,16 @@
   font-size: 1.1em;
 }
 
-#menu-list li:hover {
+#header #menu-list li:hover {
   background-color: #003c8f;
   color: white;
 }
 
-#menu-list li.active {
+#header #menu-list li.active {
   background-color: #5e92f3;
   color: black;
 }
 
-#setting {
+#header #settings {
   float: right;
 }
