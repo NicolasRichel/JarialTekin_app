@@ -27,18 +27,20 @@ export default {
   </div>
   `,
   created () {
-    this.hideDesc = this.tasks.map(t => true);
+    this.$store.dispatch('getTaskList');
   },
-  data: {
-    hideDesc: [],
-    hidePanel: true,
-    panelContent: ''
+  data () {
+    return {
+      hideDesc: [],
+      hidePanel: true,
+      panelContent: ''
+    };
   },
   computed: {
-    tasks () { return this.$store.state.tasks }
+    tasks () { return this.$store.state.tasks; }
   },
   watch: {
-    tasks: () => this.hideDesc = this.tasks.map(t => true)
+    tasks () { this.hideDesc = this.tasks.map(t => true); }
   },
   methods: {
     caretUpDown: x => '<i class="fa fa-caret-'+(x ? 'down' : 'up')+'"></i>'

@@ -21,22 +21,24 @@ export default {
   </div>
   `,
   created () {},
-  data: {
-    name: '',
-    priority: 0,
-    status: 0,
-    description: ''
+  data () {
+    return {
+      name: '',
+      priority: 0,
+      status: 0,
+      description: ''
+    };
   },
   computed: {
     task () {
       return {
-        this.name,
-        this.priority,
-        this.status,
-        this.description
+        name: this.name,
+        priority: this.priority,
+        status: this.status,
+        description: this.description
       };
     }
-  }
+  },
   methods: {
     submit: () => {}
   }

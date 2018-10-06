@@ -54,41 +54,9 @@ self.onfetch = (event) => {
       }());
       return cache.match(req);
     }
+
+    // Use default behavior in other cases.
+    return fetch(req);
   }());
 
-  // Use 'Cache, falling back to Network' strategy
-  // for the requests of static assets.
-  // if (/^\/static\//.test(url.pathname)) {
-  //   event.respondWith(
-  //     caches.open(STATIC_CACHE).then((cache)=> {
-  //       return cache.match(req).then((res) => {
-  //         return res || fetch(res);
-  //       });
-  //     });
-  //   );
-  // }
-  // Use 'Cache then Network' strategy
-  // (or 'Cache, Update and Refresh' strategy)
-  // for the requests to the API.
-  // if (/^\/api\//.test(url.pathname)) {
-  //   event.respondWith(
-  //     caches.open(DYNAMIC_CACHE).then((cache) => {
-  //       return cache.match(req);
-  //     });
-  //   );
-  //   event.waitUntil(
-  //     caches.open(DYNAMIC_CACHE).then((cache) => {
-  //       return fetch(req).then((res) => {
-  //         return cache.put(req, res.clone()).then(() => {
-  //           return res;
-  //         });
-  //       });
-  //     }).then((res) => {
-  //       return self.clients.get(event.clientId).then((client) => {
-  //         const msg = {};
-  //         client.postMessage(JSON.stringify(msg));
-  //       });
-  //     });
-  //   );
-  // }
 };
