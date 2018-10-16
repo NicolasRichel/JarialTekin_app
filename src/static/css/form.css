@@ -1,0 +1,31 @@
+.form {
+  width: 90%;
+  height: 90%;
+  padding: 5%;
+}
+
+.form .control {
+  margin: 12px;
+}
+
+.form .control.input {}
+
+.form .control.btn {}
+
+.form .control.input label {
+  display: block;
+}
+
+.form .control.input input {
+  min-width: 100%;
+}
+
+.form .control.input select {
+  min-width: 50%;
+}
+
+.form .control.input textarea {
+  min-width: 100%;
+  outline: none;
+  resize: vertical;
+}

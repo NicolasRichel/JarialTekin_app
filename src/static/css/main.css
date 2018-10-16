@@ -1,5 +1,7 @@
-@import "header.css";
-@import "body.css";
+@import "app-header.css";
+@import "app-body.css";
 @import "view-task.css";
+@import "side-panel.css";
+@import "form.css";
 
 body, #app { margin: 0; padding: 0; }

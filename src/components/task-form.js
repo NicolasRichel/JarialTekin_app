@@ -1,28 +1,41 @@
 export default {
   template: `
-  <div id="task-form">
-    <label>Name :</label>
-    <input type="text" v-model.trim="name"/>
-    <label>Priority :</label>
-    <select v-model="priority">
-      <option :value="0">LOW</option>
-      <option :value="1">NORMAL</option>
-      <option :value="2">HIGH</option>
-    </select>
-    <label>Status :</label>
-    <select v-model="status">
-      <option :value="0">TODO/option>
-      <option :value="1">DOING</option>
-      <option :value="2">DONE</option>
-    </select>
-    <label>Description :</label>
-    <textarea v-model="description"></textarea>
-    <button @click="submit">Save</button>
+  <div id="task-form" class="form">
+    <input type="hidden" v-model="id"/>
+    <div class="control input">
+      <label>Name :</label>
+      <input type="text" v-model.trim="name" placeholder="Name of the task"/>
+    </div>
+    <div class="control input">
+      <label>Priority :</label>
+      <select v-model="priority">
+        <option :value="0">LOW</option>
+        <option :value="1">NORMAL</option>
+        <option :value="2">HIGH</option>
+      </select>
+    </div>
+    <div class="control input">
+      <label>Status :</label>
+      <select v-model="status">
+        <option :value="0">TODO</option>
+        <option :value="1">DOING</option>
+        <option :value="2">DONE</option>
+      </select>
+    </div>
+    <div class="control input">
+     <label>Description :</label>
+     <textarea v-model="description" rows="10" placeholder="Task description"></textarea>
+    </div>
+    <div class="control btn">
+      <button @click="submit">Save</button>
+    </div>
   </div>
   `,
   created () {},
   data () {
     return {
+      newTask: true,
+      id: null,
       name: '',
       priority: 0,
       status: 0,
@@ -32,6 +45,7 @@ export default {
   computed: {
     task () {
       return {
+        id: parseInt(this.id),
         name: this.name,
         priority: this.priority,
         status: this.status,
@@ -40,6 +54,8 @@ export default {
     }
   },
   methods: {
-    submit: () => {}
+    submit () {
+      this.$store.dispatch(this.newTask ? 'createTask' : 'updateTask', this.task);
+    }
   }
 };

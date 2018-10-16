@@ -16,7 +16,7 @@
   display: inline-block;
 }
 
-#view-task .task-info > button {
+#view-task .task-info > .btn-desc {
   float: left;
   width: 32px;
   height: 32px;
@@ -48,18 +48,4 @@
   text-align: justify;
 }
 
-#view-task #panel {
-  position: absolute;
-  top: 64px;
-  left: 0;
-  width: 25%;
-  height: 100%;
-  background-color: #64b5f6;
-}
-
-#view-task #task-list.panelOpen {
-  position: absolute;
-  top: 64px;
-  right: 0;
-  width: 75%;
-}
+#view-task .task-action > button {}

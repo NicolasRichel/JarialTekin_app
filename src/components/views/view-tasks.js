@@ -1,15 +1,11 @@
-import TaskForm from '../task-form.js';
-
 export default {
   template: `
   <div id="view-task" class="view-container">
-    <div id="panel" :hidden="hidePanel">
-      <component :is="panelContent"></component>
-    </div>
-    <div id="task-list" :class="{ panelOpen: !hidePanel }">
+    <div id="task-list">
       <div v-for="(task, i) in tasks" :key="task.id" class="task-container">
         <div class="task-info">
           <button
+            class="btn-desc"
             @click="hideDesc.splice(i, 1, !hideDesc[i])"
             v-html="caretUpDown(hideDesc[i])"
             title="Description">
@@ -22,6 +18,10 @@ export default {
           <b>Description :</b><br/><hr/>
           {{task.description}}
         </div>
+        <div class="task-action">
+          <hr/>
+          <button @click="updateTask(task.id)">Update</button>
+        </div>
       </div>
     </div>
   </div>
@@ -31,9 +31,7 @@ export default {
   },
   data () {
     return {
-      hideDesc: [],
-      hidePanel: true,
-      panelContent: ''
+      hideDesc: []
     };
   },
   computed: {
@@ -43,9 +41,7 @@ export default {
     tasks () { this.hideDesc = this.tasks.map(t => true); }
   },
   methods: {
-    caretUpDown: x => '<i class="fa fa-caret-'+(x ? 'down' : 'up')+'"></i>'
-  },
-  components: {
-    taskForm: TaskForm
+    caretUpDown (x) { return `<i class="fa fa-caret-${x ? 'down' : 'up'}"></i>`; },
+    updateTask (id) { this.$store.commit('openPanel', 'taskForm'); }
   }
 };
