@@ -1,10 +1,13 @@
-import * as utils from './static/js/utils.js';
 import { request } from './static/js/proxy.js';
+import {
+  toGraqhqlInputString,
+  updateArrayElement
+} from './static/js/utils.js';
 
 const views = [
-  { id: 0, name: 'tasks', text: 'Tasks Management', actions: [] },
-  { id: 1, name: 'projects', text: 'Projects Management', actions: [] },
-  { id: 2, name: 'calendar', text: 'Calendar', actions: [] }
+  { id: 0, name: 'tasks', title: 'Tasks Management', actions: [] },
+  { id: 1, name: 'projects', title: 'Projects Management', actions: [] },
+  { id: 2, name: 'calendar', title: 'Calendar', actions: [] }
 ];
 
 export default function () {
@@ -14,17 +17,65 @@ export default function () {
       currentView: views[0],
       panelOpen: false,
       panelContent: '',
+      priorities: [],
+      statuses: [],
       tasks: [],
-      projects: []
+      projects: [],
+      currentTask: null
     },
     mutations: {
-      changeView (state, view) { state.currentView = state.views.find(v => v.name===view); },
-      openPanel (state, content) { state.panelOpen = true; state.panelContent = content; },
-      closePanel (state) { state.panelOpen = false; state.panelContent = ''; },
-      setTaskList (state, tasks) { state.tasks = tasks; },
-      setProjectList (state, projects) { state.projects = projects; }
+      changeView (state, view) {
+        state.currentView = state.views.find(v => v.name===view);
+      },
+      openPanel (state, content) {
+        state.panelOpen = true;
+        state.panelContent = content;
+      },
+      closePanel (state) {
+        state.panelOpen = false;
+        state.panelContent = '';
+      },
+      setPriorityList (state, priorities) {
+        state.priorities = priorities;
+      },
+      setStatusList (state, statuses) {
+        state.statuses = statuses;
+      },
+      setTaskList (state, tasks) {
+        state.tasks = tasks;
+      },
+      setProjectList (state, projects) {
+        state.projects = projects;
+      },
+      selectTask (state, task) {
+        state.currentTask = task;
+      },
+      unselectTask (state) {
+        state.currentTask = null;
+      }
     },
     actions: {
+
+      getPriorityList ({ commit }) {
+        request(`{
+          allPriorities {
+            index, name
+          }
+        }`)
+        .then( data => {
+          data && commit('setPriorityList', data.allPriorities);
+        });
+      },
+      getStatusList ({ commit }) {
+        request(`{
+          allStatuses {
+            index, name
+          }
+        }`)
+        .then( data => {
+          data && commit('setPriorityList', data.allStatuses);
+        });
+      },
 
       // Task Management Actions
       getTaskList ({ commit }) {
@@ -32,24 +83,29 @@ export default function () {
           allTasks {
             id, name, description
           }
-        }`).then( data => {
+        }`)
+        .then( data => {
           data && commit('setTaskList', data.allTasks);
         });
       },
       createTask ({ commit, state }, task) {
         request(`mutation {
-          createTask (task: ${utils.graqhqlInputString(task)}) {
+          createTask (task: ${toGraqhqlInputString(task)}) {
             id, name, description
           }
-        }`).then( data => {
+        }`)
+        .then( data => {
           data && commit('setTaskList', state.tasks.push(task));
         });
       },
       updateTask ({ commit, state }, task) {
         request(`mutation {
-          updateTask (task: ${utils.graqhqlInputString(task)})
-        }`).then( data => {
-          data && data.updateTask && commit('setTaskList', utils.updateArrayElement(state.tasks, task));
+          updateTask (task: ${toGraqhqlInputString(task)})
+        }`)
+        .then( data => {
+          if (data && data.updateTask) {
+            commit('setTaskList', updateArrayElement(state.tasks, task));
+          }
         });
       },
 

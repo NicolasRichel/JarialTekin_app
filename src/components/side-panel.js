@@ -10,11 +10,17 @@ export default {
     </div>
   `,
   computed: {
-    open () { return this.$store.state.panelOpen; },
-    panelContent () { return this.$store.state.panelContent; }
+    open () {
+      return this.$store.state.panelOpen;
+    },
+    panelContent () {
+      return this.$store.state.panelContent;
+    }
   },
   methods: {
-    closePanel () { this.$store.commit('closePanel'); }
+    closePanel () {
+      this.$store.commit('closePanel');
+    }
   },
   components: {
     taskForm: TaskForm

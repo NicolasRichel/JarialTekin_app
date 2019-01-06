@@ -20,10 +20,10 @@ export function request (query, operationName, variables)  {
     return res.text();
   }).then( rawBody => {
     const parsedBody = JSON.parse(rawBody);
-    if (parsedBody.error) throw new Error(`GraphQL error : ${JSON.stringify(parsedBody.error)}`);
+    if (parsedBody.errors) throw new Error(`GraphQL error : ${JSON.stringify(parsedBody.errors)}`);
     return parsedBody.data;
   }).catch( error => {
-    console.error('Proxy : Error in request. ', error);
+    console.error(error);
     return false;
   });
 };

@@ -31,7 +31,6 @@ export default {
     </div>
   </div>
   `,
-  created () {},
   data () {
     return {
       newTask: true,
@@ -42,13 +41,24 @@ export default {
       description: ''
     };
   },
+  created () {
+    const task = this.$store.state.currentTask;
+    if (task) {
+      this.newTask = false;
+      this.id = task.id;
+      this.name = task.name;
+      this.priority = task.priority;
+      this.status = task.status;
+      this.description = task.description;
+    }
+  },
   computed: {
     task () {
       return {
         id: parseInt(this.id),
         name: this.name,
-        priority: this.priority,
-        status: this.status,
+        //priority: this.priority,
+        //status: this.status,
         description: this.description
       };
     }

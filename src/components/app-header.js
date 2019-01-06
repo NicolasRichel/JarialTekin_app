@@ -8,7 +8,7 @@ export default {
         <ul id="menu-list" :hidden="hideMenu">
           <li v-for="view in views" :key="view.id"
             @click="selectView(view.name)">
-            {{view.text}}
+            {{view.title}}
           </li>
         </ul>
       </div>
@@ -26,8 +26,12 @@ export default {
     }
   },
   computed: {
-    currentView () { return this.$store.state.currentView; },
-    views () { return this.$store.state.views; }
+    currentView () {
+      return this.$store.state.currentView;
+    },
+    views () {
+      return this.$store.state.views;
+    }
   },
   methods: {
     selectView (name) {

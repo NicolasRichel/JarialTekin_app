@@ -33,12 +33,14 @@ self.onfetch = (event) => {
   if (req.method !== 'GET') return;
 
   event.respondWith(async function() {
+
     // Use 'Cache, falling back to Network' strategy
     // for requests of static assets and libraries.
     if (/\/static\/|\/lib\//.test(url.pathname)) {
       const cache = await caches.open(STATIC_CACHE);
       return (await cache.match(req)) || fetch(req);
     }
+    
     // Use 'Cache then Network' strategy
     // (or 'Cache, Update and Refresh' strategy)
     // for requests to the API.

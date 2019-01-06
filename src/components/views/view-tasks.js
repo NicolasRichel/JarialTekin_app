@@ -7,7 +7,7 @@ export default {
           <button
             class="btn-desc"
             @click="hideDesc.splice(i, 1, !hideDesc[i])"
-            v-html="caretUpDown(hideDesc[i])"
+            v-html="caret(hideDesc[i])"
             title="Description">
           </button>
           <div class="task-name"><b>{{task.name}}</b></div>
@@ -20,28 +20,37 @@ export default {
         </div>
         <div class="task-action">
           <hr/>
-          <button @click="updateTask(task.id)">Update</button>
+          <button @click="updateTask(task)">Update</button>
         </div>
       </div>
     </div>
   </div>
   `,
-  created () {
-    this.$store.dispatch('getTaskList');
-  },
   data () {
     return {
       hideDesc: []
     };
   },
+  created () {
+    this.$store.dispatch('getTaskList');
+  },
   computed: {
-    tasks () { return this.$store.state.tasks; }
+    tasks () {
+      return this.$store.state.tasks;
+    }
   },
   watch: {
-    tasks () { this.hideDesc = this.tasks.map(t => true); }
+    tasks () {
+      this.hideDesc = this.tasks.map(t => true);
+    }
   },
   methods: {
-    caretUpDown (x) { return `<i class="fa fa-caret-${x ? 'down' : 'up'}"></i>`; },
-    updateTask (id) { this.$store.commit('openPanel', 'taskForm'); }
+    caret (x) {
+      return `<i class="fa fa-caret-${x ? 'down' : 'up'}"></i>`;
+    },
+    updateTask (task) {
+      this.$store.commit('selectTask', task);
+      this.$store.commit('openPanel', 'taskForm');
+    }
   }
 };

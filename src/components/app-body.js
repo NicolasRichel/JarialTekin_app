@@ -11,7 +11,9 @@ export default {
     </div>
   `,
   computed: {
-    currentView () { return this.$store.state.currentView; }
+    currentView () {
+      return this.$store.state.currentView;
+    }
   },
   components: {
     SidePanel,
