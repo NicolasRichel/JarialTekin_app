@@ -1,7 +1,8 @@
 import { request } from './static/js/proxy.js';
 import {
   toGraqhqlInputString,
-  updateArrayElement
+  updateArrayElement,
+  removeArrayElement
 } from './static/js/utils.js';
 
 const views = [
@@ -95,7 +96,10 @@ export default function () {
           }
         }`)
         .then( data => {
-          data && commit('setTaskList', state.tasks.push(task));
+          if (data) {
+            commit('setTaskList', state.tasks.push(task));
+            commit('closePanel');
+          }
         });
       },
       updateTask ({ commit, state }, task) {
@@ -105,6 +109,18 @@ export default function () {
         .then( data => {
           if (data && data.updateTask) {
             commit('setTaskList', updateArrayElement(state.tasks, task));
+            commit('unselectTask');
+            commit('closePanel');
+          }
+        });
+      },
+      deleteTask ({ commit, state }, task) {
+        request(`mutation {
+          deleteTask (id: ${task.id})
+        }`)
+        .then( data => {
+          if (data && data.deleteTask) {
+            commit('setTaskList', removeArrayElement(state.tasks, task));
           }
         });
       },

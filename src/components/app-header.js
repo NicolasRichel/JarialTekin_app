@@ -12,7 +12,6 @@ export default {
           </li>
         </ul>
       </div>
-      <div id="actions">view actions goes here ...</div>
       <div id="settings">
         <button id="settings-btn">
           <i class="fa fa-cog"></i>

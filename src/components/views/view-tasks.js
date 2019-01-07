@@ -1,6 +1,9 @@
 export default {
   template: `
   <div id="view-task" class="view-container">
+    <div id="task-action-board">
+      <button @click="createTask()">New Task</button>
+    </div>
     <div id="task-list">
       <div v-for="(task, i) in tasks" :key="task.id" class="task-container">
         <div class="task-info">
@@ -21,6 +24,7 @@ export default {
         <div class="task-action">
           <hr/>
           <button @click="updateTask(task)">Update</button>
+          <button @click="deleteTask(task)">Delete</button>
         </div>
       </div>
     </div>
@@ -40,17 +44,23 @@ export default {
     }
   },
   watch: {
-    tasks () {
-      this.hideDesc = this.tasks.map(t => true);
+    tasks (tasks) {
+      this.hideDesc = tasks.map(t => true);
     }
   },
   methods: {
     caret (x) {
       return `<i class="fa fa-caret-${x ? 'down' : 'up'}"></i>`;
     },
+    createTask () {
+      this.$store.commit('openPanel', 'taskForm');
+    },
     updateTask (task) {
       this.$store.commit('selectTask', task);
       this.$store.commit('openPanel', 'taskForm');
+    },
+    deleteTask (task) {
+      this.$store.dispatch('deleteTask', task);
     }
   }
 };
