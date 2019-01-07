@@ -9,17 +9,13 @@ export default {
     <div class="control input">
       <label>Priority :</label>
       <select v-model="priority">
-        <option :value="0">LOW</option>
-        <option :value="1">NORMAL</option>
-        <option :value="2">HIGH</option>
+        <option v-for="p in priorities" :key="p.index" :value="p.index">{{p.label}}</option>
       </select>
     </div>
     <div class="control input">
       <label>Status :</label>
       <select v-model="status">
-        <option :value="0">TODO</option>
-        <option :value="1">DOING</option>
-        <option :value="2">DONE</option>
+        <option v-for="s in statuses" :key="s.index" :value="s.index">{{s.label}}</option>
       </select>
     </div>
     <div class="control input">
@@ -42,6 +38,8 @@ export default {
     };
   },
   created () {
+    this.$store.dispatch('getPriorityList');
+    this.$store.dispatch('getStatusList');
     const task = this.$store.state.currentTask;
     if (task) {
       this.newTask = false;
@@ -53,6 +51,12 @@ export default {
     }
   },
   computed: {
+    priorities () {
+      return this.$store.state.priorities;
+    },
+    statuses () {
+      return this.$store.state.statuses;
+    },
     task () {
       return {
         id: parseInt(this.id),

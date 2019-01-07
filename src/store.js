@@ -60,7 +60,7 @@ export default function () {
       getPriorityList ({ commit }) {
         request(`{
           allPriorities {
-            index, name
+            index, label
           }
         }`)
         .then( data => {
@@ -70,11 +70,11 @@ export default function () {
       getStatusList ({ commit }) {
         request(`{
           allStatuses {
-            index, name
+            index, label
           }
         }`)
         .then( data => {
-          data && commit('setPriorityList', data.allStatuses);
+          data && commit('setStatusList', data.allStatuses);
         });
       },
 
