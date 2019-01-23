@@ -1,4 +1,5 @@
-import TaskForm from './task-form.js';
+import AppMenu from '../app-menu/app-menu.js';
+import TaskForm from '../task-form/task-form.js';
 
 export default {
   template: `
@@ -23,6 +24,7 @@ export default {
     }
   },
   components: {
+    appMenu: AppMenu,
     taskForm: TaskForm
   }
 };

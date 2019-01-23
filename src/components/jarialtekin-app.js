@@ -1,5 +1,5 @@
-import AppHeader from './app-header.js';
-import AppBody from './app-body.js';
+import AppHeader from './app-header/app-header.js';
+import AppBody from './app-body/app-body.js';
 
 export default {
   template: `

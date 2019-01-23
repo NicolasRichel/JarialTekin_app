@@ -1,14 +1,15 @@
 import { request } from './static/js/proxy.js';
 import {
   toGraqhqlInputString,
+  addArrayElement,
   updateArrayElement,
   removeArrayElement
 } from './static/js/utils.js';
 
 const views = [
-  { id: 0, name: 'tasks', title: 'Tasks Management', actions: [] },
-  { id: 1, name: 'projects', title: 'Projects Management', actions: [] },
-  { id: 2, name: 'calendar', title: 'Calendar', actions: [] }
+  { id: 0, name: 'tasks', title: 'Tasks Management' },
+  { id: 1, name: 'projects', title: 'Projects Management' },
+  { id: 2, name: 'calendar', title: 'Calendar' }
 ];
 
 export default function () {
@@ -25,8 +26,10 @@ export default function () {
       currentTask: null
     },
     mutations: {
-      changeView (state, view) {
+      selectView (state, view) {
         state.currentView = state.views.find(v => v.name===view);
+        state.panelOpen = false;
+        state.panelContent = '';
       },
       openPanel (state, content) {
         state.panelOpen = true;
@@ -96,8 +99,8 @@ export default function () {
           }
         }`)
         .then( data => {
-          if (data) {
-            commit('setTaskList', state.tasks.push(task));
+          if (data && data.createTask) {
+            commit('setTaskList', addArrayElement(state.tasks, data.createTask));
             commit('closePanel');
           }
         });
@@ -128,7 +131,8 @@ export default function () {
       // Project Management Actions
       getProjectList ({ commit }) {},
       createProject ({ commit, state }, project) {},
-      updateProject ({ commit, state }, project) {}
+      updateProject ({ commit, state }, project) {},
+      deleteProject ({ commit, state }, project) {}
 
     }
   });

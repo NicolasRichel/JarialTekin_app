@@ -20,7 +20,7 @@
 #side-panel #content-container {
   width: 50%;
   height: 100%;
-  background-color: #64b5f6;
+  background-color: white;
 }
 
 #side-panel #content-container > *:nth-child(2) {

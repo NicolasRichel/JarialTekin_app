@@ -1,7 +1,7 @@
-import SidePanel from './side-panel.js';
-import ViewTasks from './views/view-tasks.js';
-import ViewProjects from './views/view-projects.js';
-import ViewCalendar from './views/view-calendar.js';
+import SidePanel from '../side-panel/side-panel.js';
+import ViewTasks from '../view-tasks/view-tasks.js';
+import ViewProjects from '../view-projects/view-projects.js';
+import ViewCalendar from '../view-calendar/view-calendar.js';
 
 export default {
   template: `

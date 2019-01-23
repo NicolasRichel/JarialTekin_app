@@ -1,0 +1,22 @@
+#menu #menu-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+#menu #menu-list li {
+  margin: 0;
+  padding: 16px 0;
+  text-align: center;
+  font-size: 1.1em;
+}
+
+#menu #menu-list li:hover {
+  background-color: #003c8f;
+  color: white;
+}
+
+#menu #menu-list li.active {
+  background-color: #5e92f3;
+  color: black;
+}

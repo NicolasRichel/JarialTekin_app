@@ -1,0 +1,29 @@
+#header {
+  height: 64px;
+  background-color: #1565c0;
+  color: #ffffff;
+  box-shadow: 0px 4px 4px #a0a0a0;
+}
+
+#header > div {
+  display: inline-block;
+}
+
+#header #menu-btn,
+#header #settings-btn {
+  width: 48px;
+  height: 48px;
+  margin: 7px;
+  background-color: #1565c0;
+  color: #ffffff;
+  border: none;
+}
+
+#header #menu-btn:focus,
+#header #settings-btn:focus {
+  outline: none;
+}
+
+#header #settings {
+  float: right;
+}
