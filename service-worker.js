@@ -20,7 +20,7 @@ self.oninstall = (event) => {
 
 // On Activate
 self.onactivate = (event) => {
-  console.log(`Service Worker activated. [ ${Date.now()} ]`);
+  console.log(`Service Worker activated.`);
 };
 
 // On Fetch
